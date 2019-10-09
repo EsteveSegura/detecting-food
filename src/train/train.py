@@ -8,6 +8,29 @@ from keras.layers.convolutional import Conv2D, MaxPooling2D
 from keras import callbacks
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2' ##Fixing some random errors!
 
+
+##Folder structure
+#   data/
+#        train/
+#            elephants/ ### 1024 pictures
+#                elephant001.jpg
+#                elephant002.jpg
+#                ...
+#            tigers/ ### 1024 pictures
+#               tiger001.jpg
+#               tiger002.jpg
+#               ...
+#        validation/
+#            elephants/ ### 416 pictures
+#               elephant001.jpg
+#               elephant002.jpg
+#               ...
+#            tigers/ ### 416 pictures
+#               tiger001.jpg
+#               tiger002.jpg
+#               ...
+
+
 #Change epocs by DEV variable
 DEV = False
 argvs = sys.argv
