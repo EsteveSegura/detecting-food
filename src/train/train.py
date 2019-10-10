@@ -32,15 +32,16 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2' ##Fixing some random errors!
 
 
 #Change epocs by DEV variable
-DEV = False
+DEV = True
 argvs = sys.argv
 argc = len(argvs)
 
 if argc > 1 and (argvs[1] == "--development" or argvs[1] == "-d"):
   DEV = True
+  print("WARN: DEV MODE TRUE, training only 5 epochs!")
 
 if DEV:
-  epochs = 4
+  epochs = 5
 else:
   epochs = 20
 
