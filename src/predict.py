@@ -10,7 +10,7 @@ model_weights_path = './models/weights.h5'
 model = load_model(model_path)
 model.load_weights(model_weights_path)
 
-
+#predict
 def predict(file):
     x = load_img(file, target_size=(img_width,img_height))
     x = img_to_array(x)
