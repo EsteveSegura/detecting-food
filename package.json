@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "image-downloader": "^3.5.0",
     "tools-for-instagram": "^1.6.0"
   },
   "devDependencies": {},
