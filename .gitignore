@@ -89,5 +89,5 @@ typings/
 
 # Dataset
 .src/data/
-.private/
+private/
 *.jpg
