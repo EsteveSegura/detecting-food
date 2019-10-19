@@ -90,4 +90,6 @@ typings/
 # Dataset
 .src/data/
 private/
+.private/
+/private
 *.jpg
