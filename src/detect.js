@@ -1,5 +1,5 @@
 const spawn = require('child_process').spawn;
-const ls = spawn('python', ['vgg.py', 'testing2.jpg']);
+const ls = spawn('python', ['vgg.py', './imgs/testing2.jpg']);
 
 function decodePrediction(str){
      let decode = str.split('-');
