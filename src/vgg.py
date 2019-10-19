@@ -13,7 +13,7 @@ def predictPicture(picturePath):
      dataimg = np.reshape(dataimg,(1,224,224,3))
      dataimg = preprocess_input(dataimg)
      pred = mod.predict(dataimg)
-     predlabel = decode_predictions(pred, top=3)
+     predlabel = decode_predictions(pred)
      predlabel = predlabel[0][0]
      return(predlabel[1] + "-" + str(predlabel[2]*100))
 
