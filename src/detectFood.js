@@ -1,5 +1,4 @@
 const spawn = require('child_process').spawn;
-const ls = spawn('python', ['vgg.py', './imgs/testing2.jpg']);
 
 function decodePrediction(str){
      let decode = str.split('-');
@@ -9,16 +8,20 @@ function decodePrediction(str){
      }
 }
 
-async function callPython(){
+async function getPrediction(path){
      return new Promise((resolve,reject)=>{
+          const ls = spawn('python', ['vggModel.py', path]);
           ls.stdout.on('data', (data) => {
                resolve(decodePrediction(data.toString()))
           });
      })
 }
 
+/*
 (async() => {
-     let prediction = await callPython()
+     let prediction = await getPrediction('./imgs/testing2.jpg')
      console.log(prediction)
 })();
+*/
 
+module.exports = { getPrediction }

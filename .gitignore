@@ -93,3 +93,5 @@ private/
 .private/
 /private
 *.jpg
+src/db/soren_helena.json
+src/cookies/soren_helena.json
