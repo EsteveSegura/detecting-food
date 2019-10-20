@@ -6,7 +6,8 @@ require('tools-for-instagram');
 async function downloadPost(ig,media_id){
      try {
           let postToDownload = await getMediaIdInfo(ig,media_id);
-          await downloadImage(postToDownload.items[0].image_versions2.candidates[0].url,media_id);
+          let downloadedData = await downloadImage(postToDownload.items[0].image_versions2.candidates[0].url,media_id);
+          return downloadedData;
      } catch (error) {
           return 'cant_reads';
      }
@@ -18,21 +19,29 @@ async function downloadImage (url,id){
      return id;
 }
 
+async function getPrediction(path){
+     let pred = await detectFood.getPrediction(path)
+     return pred
+}
 
 (async () => {
      let ig = await login();
      await setAntiBanMode(ig);
      
-     setInterval(async () => {
-          console.log('getin posts')
-          let posts = await recentHashtagList(ig, "foodporn");
-          console.log('posts done')
-          console.log('interating posts')
+     //setInterval(async () => {
+          let posts = await recentHashtagList(ig, "burger");
+          console.log(posts.length)
           for(let i = 0 ; i < posts.length ; i++){
                let actualPost = await downloadPost(ig,posts[i].pk)
-               let prediction = await detectFood.getPrediction(`./imgs/${actualPost}`)
-               console.log(`${actualPost}.jpg : ${prediction}`)
+               if(actualPost != "no_preds"){
+                    try {
+                         let prediction = await detectFood.getPrediction(`./imgs/${actualPost}.jpg`)
+                         console.log(`${actualPost}.jpg : is ${prediction.label} in ${prediction.percentage}.00%`)
+                    } catch (error) {
+                         console.log("sad")
+                    }
+               }
           }
-     }, 60000 /* * 75*/);
+     //}, 600000 /* * 75*/);
 
 })();
