@@ -37,6 +37,9 @@ async function getPrediction(path){
                     try {
                          let prediction = await detectFood.getPrediction(`./imgs/${actualPost}.jpg`)
                          console.log(`${actualPost}.jpg : is ${prediction.label} in ${prediction.percentage}.00%`)
+                         if(prediction.label == "cheeseburger" && prediction.percentage >= 85){
+                              console.log("Comment!")
+                         }
                     } catch (error) {
                          console.log("sad")
                     }
