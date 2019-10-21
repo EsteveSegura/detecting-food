@@ -3,7 +3,8 @@ const download = require('image-downloader')
 const detectFood = require('./detectFood');
 require('tools-for-instagram');
 
-function readFileLineByLine(dataPath){
+//read txt file and convert to array
+function readFileLineByLineAndConvertToArray(dataPath){
      return new Promise(function(resolve,reject){
          let dataset = []
  
@@ -47,7 +48,7 @@ async function getPrediction(path){
      await setAntiBanMode(ig);
      
      //setInterval(async () => {
-          let posts = await recentHashtagList(ig, "burger");
+          let posts = await recentHashtagList(ig, "foodporn");
           console.log(posts.length)
           for(let i = 0 ; i < posts.length ; i++){
                let actualPost = await downloadPost(ig,posts[i].pk)
