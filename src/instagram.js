@@ -1,5 +1,6 @@
 const download = require('image-downloader')
 const detectFood = require('./detectFood');
+require('tools-for-instagram')
 
 //read txt file and convert to array
 function readFileLineByLine(dataPath){
@@ -56,8 +57,8 @@ async function getPrediction(path){
      await setAntiBanMode(ig); //anti-ban Mode
      
      //repeat this every hour
-     setInterval(async () => {
-          let posts = await recentHashtagList(ig, "foodporn"); //get all hashtags in #foodporn hashtag
+     //setInterval(async () => {
+          let posts = await recentHashtagList(ig, "food"); //get all hashtags in #foodporn hashtag
           for(let i = 0 ; i < posts.length ; i++){
                let actualPost = await downloadPost(ig,posts[i].pk) //download picture
                if(actualPost != "no_preds"){
@@ -65,9 +66,9 @@ async function getPrediction(path){
                          let prediction = await detectFood.getPrediction(`./imgs/${actualPost}.jpg`) //try to predict
                          console.log(`the media id: ${actualPost} is ${prediction.label} in ${prediction.percentage}.00%`) 
                          if(prediction.label == "cheeseburger" && prediction.percentage >= 85){
-                              let sentences = readFileLineByLine('./burgerSentences.txt');
-                              let randomSentence = sentences[randomInt(0,sentences.length-1)]
-                              commentMediaId(ig, actualPost, randomSentence)
+                              //let sentences = readFileLineByLine('./burgerSentences.txt');
+                              //let randomSentence = sentences[randomInt(0,sentences.length-1)]
+                              //commentMediaId(ig, actualPost, randomSentence)
                               console.log("Comment that picture!")
                          }
                     } catch (error) {
@@ -75,5 +76,11 @@ async function getPrediction(path){
                     }
                }
           }
-     }, 60000);
+     //}, 60000);
 })();
+
+
+
+
+
+
